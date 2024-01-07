@@ -17,6 +17,7 @@ type MainButtonProps = {
   rightIconRoute?: string;
   rightIconClass?: string;
   iconComponent?: ReactElement;
+  rightIconComponent?: ReactElement;
   size?: "small" | "normal" | "large";
 };
 
@@ -37,18 +38,19 @@ const MainButton = forwardRef<HTMLButtonElement, MainButtonProps>(
       rightIconRoute,
       rightIconClass = "w-[24px] h-[24px]",
       iconComponent,
+      rightIconComponent,
       size = "normal",
     },
     ref
   ) => {
     const propWidth =
-      width === "full_width" ? "w-full" : width ? width : "w-[245px]";
+      width === "full_width" ? "w-full" : width ? width : "w-[9.25rem]";
 
     const isSecondaryVariant = variant !== "primary";
 
     const size_height =
       size === "normal"
-        ? "h-[3.1215rem]"
+        ? "h-[3.68754rem]"
         : size === "large"
         ? "h-[3.75rem]"
         : "h-[2.625rem]";
@@ -60,8 +62,8 @@ const MainButton = forwardRef<HTMLButtonElement, MainButtonProps>(
       <Button
         form={form}
         className={`${
-          isSecondaryVariant ? " text-white  bg-secondary" : "bg-primary"
-        } text-white shadow-xl ${propWidth} md:${propWidth}  select-none rounded-[0.625rem] hover:opacity-90 ${variant_hover} ${size_height} ${classes}`}
+          isSecondaryVariant ? " text-white  bg-secondary" : "bg-superGray"
+        } text-white shadow-xl ${propWidth} md:${propWidth} text-[1.125rem] font-[500]  select-none rounded-[0.625rem] hover:opacity-90 ${variant_hover} ${size_height} ${classes}`}
         onClick={!disabled ? action : () => undefined}
         type={isSubmitable ? "submit" : "button"}
         ref={ref}
@@ -86,10 +88,11 @@ const MainButton = forwardRef<HTMLButtonElement, MainButtonProps>(
             className={rightIconClass}
           />
         )}
+        {rightIconComponent}
       </Button>
     ) : (
       <Button
-        className={`bg-primary text-white ${propWidth} md:${propWidth} select-none rounded-[0.625rem] cursor-not-allowed ${size_height} ${
+        className={`bg-background text-white ${propWidth} md:${propWidth} select-none rounded-[0.625rem] cursor-not-allowed ${size_height} ${
           classes ? classes : ""
         }`}
         ref={ref}
